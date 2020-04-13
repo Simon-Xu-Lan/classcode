@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var user, computer; 
+        var userScore=0, computerScore=0;
+        var choices = ["r", "p", "s"];
+        var randomNum
+        // 1. Prompt user to enter r, p, or s representing rock, paper, or scissors.
+        for (var i=0; i < 10; i++) {
+            user = prompt("Please enter your choice", "r, p, or s representing rock, paper, or scissors");
+        // 2. Computer chooses a random value in a list of r, p, or s.
+            
+            randomNum = math.floor(math.random()*3);
+            computer = choices[randomNum];
+            alert("computer choose " + computer);
+            
+        // 3. We determine if the user wins or not.
+            // * If user picks rock and if computer picks scissors then user wins.
+            // * If user picks rock and if computer picks paper then user loses.
+            // * If user picks scissors and if computer picks rock then user loses.
+            // * If user picks scissors and if computer picks paper then user wins.
+            // * If user picks paper and if computer picks rock then user wins.
+            // * If user picks paper and if computer picks scissors then user loses.
+            // * If user picks the same as computer then they tie.
+            if (user === "r" && computer === "s") {
+                alert("win");
+                userScore++;
+                }
+            if (user === "r" && computer === "p") {
+                alert("lose");
+                computerScore++;
+                }
+            if (user === "s" && computer === "p") {
+                alert("win");
+                userScore++;}
+            if (user === "s" && computer === "r") {
+                alert("lose");
+                computerScore++;
+                }
+            if (user === "p" && computer === "r") {
+                alert("win");
+                userScore++;
+                }
+            if (user === "p" && computer === "s") {
+                alert("lose");
+                computerScore++;
+                }
+        }
+        
+        if (userScore > computer) {alert("Win")}
+        if (userScore < computer) {alert("Lose")}
+        if (userScore === computer) {alert("Tie")}
+
+        // 5. Prompt user to play again.
+    </script>
+</body>
+</html>
