@@ -2,7 +2,6 @@ var counter = document.querySelector("#counter");
 var addButton = document.querySelector("#add");
 var subtractButton = document.querySelector("#subtract");
 
-// retrieve the data from local storage when the page is loaded.
 var count = localStorage.getItem("count");
 
 counter.textContent = count;

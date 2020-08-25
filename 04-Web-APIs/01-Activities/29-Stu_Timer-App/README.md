@@ -53,6 +53,3 @@
 ## Bonus
 
 Prevent the timer from running when the user enters invalid input. (numbers <= 0)
-
-**question:**
-What is the minutes of rest for?

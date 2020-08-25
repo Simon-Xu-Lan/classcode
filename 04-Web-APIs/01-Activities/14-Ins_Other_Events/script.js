@@ -11,7 +11,6 @@ var elements = [
   h1El, h2El, h3El, pEl
 ];
 
-console.log(elementEl.children);
 
 var typeface;
 
@@ -25,7 +24,7 @@ textAreaEl.addEventListener("keydown", function(event) {
   var key = event.key.toLowerCase();
   var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789 ".split("");
   if (alphabetNumericCharacters.includes(key)) {
-    Array.from(elementEl.children).forEach(function(element) {
+    elementEl.children.forEach(function(element) {
       element.textContent += event.key;
     });
   }

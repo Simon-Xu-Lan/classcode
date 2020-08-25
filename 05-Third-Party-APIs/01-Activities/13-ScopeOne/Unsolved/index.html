@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Scope Activity #1</title>
 </head>
+
 <body>
   <h1>Scope Activity #1</h1>
   <h2>✨Open the console to see the magic!✨</h2>
@@ -24,7 +26,10 @@
     }
 
     // what is happening here?
-    var insideOut = outside();
+    // var insideOut = outside();
+    var insideOut = function (y) {
+      console.log(x + y);
+    }
 
     // What does this return?
     insideOut(2);
@@ -36,4 +41,5 @@
   </script>
 
 </body>
+
 </html>

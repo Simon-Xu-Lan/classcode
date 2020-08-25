@@ -1,0 +1,20 @@
+{
+  "short_name": "Demo", // the name shows on the icon
+  "name": "Web App Manifest Demo",
+  "icons": [  // image use for the icon
+    {
+      "src": "/assets/images/icons-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icons-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",  //opening route, indicate open locally
+  "background_color": "#808080",  // background color behind icon
+  "display": "standalone",  // open up in a seperate windwon
+  "theme_color": "#808080" // theme color for icon
+}

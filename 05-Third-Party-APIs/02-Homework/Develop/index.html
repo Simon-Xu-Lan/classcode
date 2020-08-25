@@ -28,11 +28,103 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
+    <div class="container" id="schedule">
       <!-- Timeblocks go here -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script>
+      //set up the current date
+      var date = new Date();
+      var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var w = date.getDay(); //get the number of weekday
+      var m = date.getMonth(); //get the number of month
+      var d = date.getDate();
+      var theWeekDay = "" + weekdays[w];
+      var theMonth = "" + months[m];
+      var theDate;
+      switch(d) {
+        case 1:
+        case 11:
+        case 21:
+        case 31:
+          theDate = "" + d + "st";
+          break;
+        case 2:
+        case 12: 
+        case 22: 
+          theDate = "" + d + "nd";
+          break;
+        case 3:
+        case 13: 
+        case 23: 
+          theDate = "" + d + "rd";
+          break;
+        default:
+          theDate = "" + d + "th";
+      };
+      
+      $("#currentDay").text(theWeekDay + " " + theMonth + " " + theDate);
+      
+      //set up the day calendar
+      var startTimeAM = 8;
+      var endTimePM = 5;
+      var currentHour = date.getHours();
+
+      for(var i = startTimeAM; i <= (endTimePM+12); i++) {
+        var timeSlot = TwelveHourClock(i);
+        var rowEl = $("<div class='row'>");
+        var colLeft = $("<div class='col-1 hour'>").text(timeSlot);
+        var colMiddle = $("<div class='col-10'>");
+        var colRight = $("<div class='col-1 saveBtn'>").text("Save");
+        var textEl = $("<textarea class='description'>");
+
+        $(textEl).attr("id", timeSlot);
+        
+        //set the colMiddle class according to currenthour
+        if (i < currentHour) {
+          colMiddle.attr("class", "col-10 middle past");
+        } else if (i === currentHour) {
+          colMiddle.attr("class", "col-10 middle present");
+        } else {
+          colMiddle.attr("class", "col-10 middle future");
+        }
+        colMiddle.append(textEl);
+        rowEl.append(colLeft, colMiddle, colRight);
+
+        $("#schedule").append(rowEl);
+      };
+      
+      $(".saveBtn").on("click", function() {
+        var parentEl = $(this).parent();
+        var colArr = parentEl.children();
+        var timeSection = $(colArr[0]).text();
+        var textElArr = $(colArr[1]).find("textarea");
+        var textContent = textElArr[0].value;
+        console.log(timeSection);
+        console.log(textContent);
+        localStorage.setItem(timeSection, textContent);
+      });
+
+      //initialize the page according to local storage when refresh or load the page. 
+      for (var i = startTimeAM; i<=12+endTimePM; i++) {
+        var timeSlot = TwelveHourClock(i);
+        var storedContent = localStorage.getItem(timeSlot);
+        $("#"+timeSlot).text(storedContent);
+      }
+      //create a function to transfer the number to am or pm.
+      function TwelveHourClock(time) {
+        if(time < 12) {
+          return "" + time +"AM";
+        } else if (time === 12) {
+          return "" + time +"PM";
+        } else {
+          return "" + (time-12) +"PM"
+        };
+      };
+
+    </script>
   </body>
 </html>
